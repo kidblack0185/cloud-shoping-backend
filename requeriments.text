@@ -1,0 +1,5 @@
+FastAPI
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-multipart
