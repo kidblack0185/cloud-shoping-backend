@@ -20,3 +20,13 @@ def criar_usuario(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(novo_usuario)
     return novo_usuario
+
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.database import get_db
+
+router = APIRouter()
+
+@router.get("/usuarios")
+def listar_usuarios(db: Session = Depends(get_db)):
+    return {"mensagem": "Lista de usuários funcionando"}

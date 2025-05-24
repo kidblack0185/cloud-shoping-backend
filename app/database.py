@@ -1,8 +1,20 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import  declarative_base
-from sqlalchemy.orm import sessionmarker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL ="sqlite:///./nuvemshop.db"
-engine =creat_engine(DATABASE_URL, connect_args={"check_same_thread: false"})
-sessionlocal=sessionmaker(autocommit=false, autoflush=false, binde=engine)
-Base = declarative declarative_base()
+DATABASE_URL = "sqlite:///./nuvemshop.db"
+
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

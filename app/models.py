@@ -21,3 +21,4 @@ class Order(Base):
     usuario_id = Column(Integer, ForeignKey("users.id"))
     produto_id = Column(Integer, ForeignKey("products.id"))
     status = Column(String, default="pendente")
+
